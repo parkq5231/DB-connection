@@ -45,24 +45,22 @@ public class SlipAPI2 {
 			StringBuilder sb = new StringBuilder();
 
 			// if부터 작성
+			if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+				BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
+				String line = "";
 
-			// 요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
-			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-			String line = "";
-			String result = "";
-
-			while ((line = br.readLine()) != null) {
-				result += line;
+				while ((line = br.readLine()) != null) {
+					sb.append(line).append("\n");
+				}
+				br.close();
+				System.out.println("" + sb.toString());
+			} else {
+				System.out.println("token error " + conn.getResponseMessage());
 			}
-			System.out.println("response body : " + result);
-
-			// Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
-			// MAP구조로
-			// gson 이용 map에 저장하기(1줄로 가능)
+			// json
 			Gson gson = new Gson();
-			map = gson.fromJson(result, Map.class);
+			map = gson.fromJson(sb.toString(), Map.class);
 
-			br.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
