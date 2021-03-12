@@ -41,11 +41,11 @@ public class SlipAPI2 {
 			// 결과 코드가 200이라면 성공
 			int responseCode = conn.getResponseCode();
 			System.out.println("responseCode : " + responseCode);
-
+			
 			StringBuilder sb = new StringBuilder();
-
-			// if부터 작성
+			//연결 성공일 때
 			if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+				//값을 읽어내어 추가함
 				BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
 				String line = "";
 
