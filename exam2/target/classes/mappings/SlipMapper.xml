@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SlipDAO">
+
+	<!-- 등록 -->
+	<insert id="insertSlip">
+		INSERT INTO SLIP
+		(SLIP_NO,
+		SLIP_AMOUNT,
+		SLIP_DT,
+		SAL_DT,
+		CUSTOMER,
+		BANK_ACCT)
+		VALUES (
+		(SELECT nvl(max (slip_no),0)+1 from SLIP),
+		#{slipAmount},
+		sysdate,
+		#{salDt},
+		#{customer},
+		#{bankAcct}
+		)
+
+	</insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

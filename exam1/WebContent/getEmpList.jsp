@@ -51,11 +51,11 @@
 
       		//ajax 호출 
       		$.ajax({
-				 url:"../exam/insertSlip",
-				 data:JSON.stringify(list),
+				 url:"insertSlip",
+				 data:{param:JSON.stringify(list)},
 				 //보내는 데이터의 형식
 				 method:"post",
-				 contentType: "application/json;charset=utf-8",
+				// contentType: "application/json;charset=utf-8",
 				 //받는 데이터의 형식
 				 dataType:"json",
 				 success:function(response){
